@@ -16,7 +16,22 @@ class FamilyStructure:
                 "last_name": last_name,
                 "age": 33,
                 "lucky_numbers": [7, 13, 22]
+            },
+             {
+                "id": self._generate_id(),
+                "first_name": "francisco",
+                "last_name": last_name,
+                "age": 37,
+                "lucky_numbers": [9, 36, 99]
+            },
+            {
+                "id": self._generate_id(),
+                "first_name": "pedro",
+                "last_name": last_name,
+                "age": 18,
+                "lucky_numbers": [4, 10, 5]
             }
+
         ]
 
     # This method generates a unique incremental ID
@@ -24,22 +39,35 @@ class FamilyStructure:
         generated_id = self._next_id
         self._next_id += 1
         return generated_id
-
+    def _paslastname(self):
+        ## pasa el lastname
+        return  self.last_name
     def add_member(self, member):
         ## You have to implement this method
         ## Append the member to the list of _members
-        pass
+        self._members.append(member)
+        return self._members
+        
 
     def delete_member(self, id):
         ## You have to implement this method
         ## Loop the list and delete the member with the given id
-        pass
+        for i in range(0, len(self._members)):
+             if (self._members[i]["id"] == int(id)):
+                 del self._members[i]
+                 body = {"done":True}
+                 break
+        return  body
 
     def get_member(self, id):
         ## You have to implement this method
         ## Loop all the members and return the one with the given id
-        pass
+        person = list(filter(lambda item:item["id"] == int(id),self._members))
+        return person 
 
     # This method is done, it returns a list with all the family members
     def get_all_members(self):
         return self._members
+    
+
+    
